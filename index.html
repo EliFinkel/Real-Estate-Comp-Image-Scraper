@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Comp Images</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18212f;
+      --muted: #5f6f86;
+      --line: #d7dde7;
+      --paper: #ffffff;
+      --wash: #f5f7fb;
+      --accent: #0f6b63;
+      --accent-dark: #0a4f49;
+      --warning: #8a5a12;
+      --warning-bg: #fff7e6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(15, 107, 99, 0.12), transparent 36%),
+        linear-gradient(315deg, rgba(42, 83, 130, 0.12), transparent 32%),
+        var(--wash);
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 72px 0;
+    }
+
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 50px rgba(24, 33, 47, 0.10);
+      padding: clamp(24px, 5vw, 48px);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    a.button:hover,
+    a.button:focus-visible {
+      background: var(--accent-dark);
+    }
+
+    .note {
+      margin-top: 28px;
+      padding: 14px 16px;
+      border: 1px solid #f0d394;
+      border-radius: 6px;
+      background: var(--warning-bg);
+      color: var(--warning);
+      font-size: 0.95rem;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .detail {
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .detail strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel" aria-labelledby="page-title">
+      <h1 id="page-title">Real Estate Comp Images</h1>
+      <p>
+        Download the prepared image package for the comp listing. This page is fully static, so it can be hosted on GitHub Pages without a server, backend, or paid runtime.
+      </p>
+
+      <div class="actions">
+        <a class="button" href="public/the-eli-winter-springs-winter-springs-fl.zip" download>Download ZIP</a>
+      </div>
+
+      <p class="note">
+        Live scraping is not available on GitHub Pages because browser-only pages cannot run Puppeteer, write image files, or create ZIP archives on the server.
+      </p>
+
+      <div class="details" aria-label="Static site details">
+        <div class="detail">
+          <strong>Hosting</strong>
+          <p>Works from a GitHub Pages deployment using the repository root.</p>
+        </div>
+        <div class="detail">
+          <strong>Asset</strong>
+          <p>The downloadable ZIP is served directly from the repository.</p>
+        </div>
+        <div class="detail">
+          <strong>Cost</strong>
+          <p>No Node process, database, scheduled job, or cloud function is required.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Puppeteer Frontend</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start; /* Align items to the top */
+      height: 100vh;
+    }
+
+    h1 {
+      color: #0056b3;
+      text-align: center;
+    }
+
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 10%; /* Position it lower on the page */
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 22px); /* Adjust to fit within padding and borders */
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #0056b3;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #004494;
+    }
+
+    #response {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    #response a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+
+    #response a:hover {
+      text-decoration: underline;
+    }
+
+    .spinner {
+      margin: 0 auto;
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #0056b3;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Puppeteer Frontend</h1>
+    <form id="scrapeForm">
+      <label for="url">Enter URL to scrape:</label>
+      <input type="text" id="url" name="url" required>
+      <button type="submit">Scrape</button>
+    </form>
+    <p id="response"></p>
+  </div>
+
+  <script>
+    document.getElementById('scrapeForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const url = document.getElementById('url').value;
+      const responseElement = document.getElementById('response');
+
+      responseElement.innerHTML = '<div class="spinner"></div> Processing...';
+
+      try {
+        const response = await fetch('/scrape', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ url })
+        });
+        const data = await response.json();
+        if (data.success) {
+          responseElement.innerHTML = 'Scraping complete. <a href="' + data.downloadUrl + '" download>Download Images</a>';
+        } else {
+          responseElement.textContent = `Error: ${data.message}`;
+        }
+      } catch (error) {
+        responseElement.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+</html>

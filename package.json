@@ -1,0 +1,42 @@
+{
+  "name": "apartments-image-scraper",
+  "version": "1.0.0",
+  "description": "Desktop wrapper for a local Apartments.com image downloader.",
+  "private": true,
+  "type": "module",
+  "main": "desktop/main.js",
+  "scripts": {
+    "desktop": "electron .",
+    "dist:win": "electron-builder --win portable --x64",
+    "start": "node server.js",
+    "setup": "npm install"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "build": {
+    "appId": "com.local.apartments-image-downloader",
+    "productName": "Apartments Image Downloader",
+    "files": [
+      "desktop/**/*",
+      "public/**/*",
+      "server.js",
+      "package.json",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "signAndEditExecutable": false,
+      "target": [
+        "portable"
+      ]
+    }
+  },
+  "dependencies": {
+    "archiver": "^8.0.0",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "electron": "^43.1.0",
+    "electron-builder": "^26.0.12"
+  }
+}

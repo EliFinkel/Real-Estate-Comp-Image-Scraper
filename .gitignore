@@ -1,0 +1,5 @@
+node_modules/
+.browser-profile/
+dist/
+.DS_Store
+*.log
